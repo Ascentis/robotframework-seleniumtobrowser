@@ -114,14 +114,15 @@ class SeleniumToBrowser:
 
     def open_browser(self, url: str = None, browser: str = 'chrome', alias: str = None, options: Any = None):
         browser_translation = {
+            "googlechrome": SupportedBrowsers.chromium,
             "chrome": SupportedBrowsers.chromium,
             "edge": SupportedBrowsers.chromium,
             "firefox": SupportedBrowsers.firefox,
             "safari": SupportedBrowsers.webkit,
             "ie": SupportedBrowsers.chromium
         }
-        self.browser.new_browser (browser_translation[browser], headless=False, timeout = '30s')
-        self.browser.new_page (url)
+        self.browser.new_browser(browser=browser_translation[browser], headless=False, timeout = '30s')
+        self.browser.new_page(url)
 
     def handle_alert(self, action: str = 'accept'):
         self.show_deprecation("Please consider using 'Handle Future Dialogs' keyword from Browser library.")
